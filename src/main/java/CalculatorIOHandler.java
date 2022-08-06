@@ -1,3 +1,5 @@
+import MyExcepcions.CalculationResultException;
+
 import java.util.Scanner;
 
 import static java.lang.Float.NaN;
@@ -50,12 +52,15 @@ public class CalculatorIOHandler {
     }
 
     public void printResult(){
-        double result = NaN;
+        float result = NaN;
         try {
             result = calculator.calculateResult();
         }
         catch (ArithmeticException e){
-            System.out.println("Division by zero!!!!");
+            System.out.println("Exception occurred " + e);
+        }
+        catch (CalculationResultException e){
+            System.out.println("Exception occurred " + e);
         }
         System.out.println(result);
     }

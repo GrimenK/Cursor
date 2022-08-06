@@ -1,3 +1,3 @@
 public interface CalculationPerformer {
-    public double calculateResult();
+    public float calculateResult();
 }

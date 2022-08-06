@@ -1,3 +1,5 @@
+import MyExcepcions.CalculationResultException;
+
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
@@ -33,23 +35,46 @@ public class Calculator implements CalculationPerformer {
         this.operand = operand;
     }
 
-    public double calculateResult(){
+    public float calculateResult(){
+        float result;
         switch (operand) {
             case '+':
-                return x+y;
-            case '-':
-                return x-y;
-            case '*':
-                return x*y;
-            case '/':
-                try{
-                return x / y;}
-                catch (ArithmeticException e){
-                    throw e;
+                result = (float) x+y;
+                if(result > 100){
+                    throw new CalculationResultException("Calculation result exceeds the limit of 100!!!");
                 }
+                else {
+                return result;}
+            case '-':
+                result = (float) x-y;
+                if(result > 100){
+                    throw new CalculationResultException("Calculation result exceeds the limit of 100!!!");
+                }
+                else {
+                    return result;}
+            case '*':
+                result = (float) x*y;
+                if(result > 100){
+                    throw new CalculationResultException("Calculation result exceeds the limit of 100!!!");
+                }
+                else {
+                    return result;}
+            case '/':
+                if (y == 0){
+                    throw new ArithmeticException("Division by zero!!");
+                }
+                    result = (float) x/y;
+                    if(result > 100){
+                        throw new CalculationResultException("Calculation result exceeds the limit of 100!!!");
+                    }
+                    else{
+                return result;}
+
+
             default:
                 return NaN;
         }
+
     }
 
 }
